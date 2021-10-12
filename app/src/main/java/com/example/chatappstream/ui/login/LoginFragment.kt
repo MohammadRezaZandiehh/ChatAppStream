@@ -33,17 +33,17 @@ class LoginFragment : BindingFragment<FragmentLoginBinding>() {
         }
 
         binding.etUsername.addTextChangedListener {
-            binding.etUsername.error = null                                                         //when error was changed
+            binding.etUsername.error = null                                                         //whenever text changes we want to reset the error message that we potentially set here to nothing
         }
         subscribeToEvents()
     }
 
-    private fun subscribeToEvents() {
+    private fun subscribeToEvents() {                                                               // catch the Events
         lifecycleScope.launchWhenStarted {
-            viewModel.loginEvent.collect{ event ->
+            viewModel.loginEvent.collect{ event ->                                                  // loginEvent --> (immutable) --> so we can not send events to sharedFlow
                 when(event) {
                     is LoginViewModel.LogInEvent.ErrorInputTooShort -> {
-                        setupIdleUiState()
+                        setupIdleUiState()                                                          // reset the UI  kind of view events we get here
                         binding.etUsername.error = getString(R.string.error_username_too_short, Constants.MIN_USERNAME_LENGTH)
                     }
                     is LoginViewModel.LogInEvent.ErrorLogIn -> {
