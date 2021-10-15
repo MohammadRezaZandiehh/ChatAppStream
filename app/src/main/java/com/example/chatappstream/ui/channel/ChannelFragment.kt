@@ -40,7 +40,7 @@ class ChannelFragment:BindingFragment<FragmentChannelBinding>() {
 
         val factory = ChannelListViewModelFactory(
             filter = Filters.and(
-                Filters.eq("type", "messaging"),                                      // we have nome another value for example 'live channel' , 'game channel' and set.. --> but here we want just "message channel" .
+                Filters.eq("type", "messaging"),                                      // we have some another value for example 'live channel' , 'game channel' and set.. --> but here we want just "message channel" .
  //                Filters.eq("members", listOf())                                                  <-- for  example for have group chats:
             ),
             sort = ChannelListViewModel.DEFAULT_SORT,

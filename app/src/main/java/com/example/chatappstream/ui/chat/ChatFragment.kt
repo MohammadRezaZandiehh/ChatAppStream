@@ -33,7 +33,7 @@ class ChatFragment : BindingFragment<FragmentChatBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val factory =
-            MessageListViewModelFactory(args.channelId)                                   // for each view in fragment_chat , we should have specific viewModel :
+            MessageListViewModelFactory(args.channelId)                                             // for each view in fragment_chat , we should have specific viewModel :
 
         val messageListHeaderViewModel: MessageListHeaderViewModel by viewModels { factory }
         val messageListViewModel: MessageListViewModel by viewModels { factory }
@@ -56,9 +56,9 @@ class ChatFragment : BindingFragment<FragmentChatBinding>() {
             }
         }
 
-        binding.messageListView.setMessageEditHandler(messageInputViewModel::postMessageToEdit)
+        binding.messageListView.setMessageEditHandler(messageInputViewModel::postMessageToEdit)     // <-- for Edit message :
 
-        messageListViewModel.state.observe(viewLifecycleOwner) { state ->
+        messageListViewModel.state.observe(viewLifecycleOwner) { state ->                           // from this line to last line we support back Button clicked .
             if (state is MessageListViewModel.State.NavigateUp) {
                 findNavController().navigateUp()
             }

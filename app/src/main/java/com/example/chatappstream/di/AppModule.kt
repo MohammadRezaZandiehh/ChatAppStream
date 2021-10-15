@@ -18,6 +18,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideChatClient(@ApplicationContext context: Context) =
+    fun provideChatClient(@ApplicationContext context: Context) =                                   ژا//Note : for use String that comes from String.xml , we must have context ., so we get from  " @ApplicationContext context: Context "
+
         ChatClient.Builder(context.getString(R.string.api_key), context).build()
 }
